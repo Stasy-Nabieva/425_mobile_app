@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Weekday Finder</string>
+    <string name="enter_day">Enter day</string>
+    <string name="enter_month">Enter month</string>
+    <string name="find_weekday">Find Weekday</string>
+    <string name="result">Result: %s</string>
+    <string name="error_invalid_day">Invalid day (1-31)</string>
+    <string name="error_invalid_month">Invalid month (1-12)</string>
+    <string name="error_overflow">Calculation overflow</string>
+    <string name="error_invalid_date">Invalid date for this month</string>
+
+    <!-- Days of week -->
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+</resources>
