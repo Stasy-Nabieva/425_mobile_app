@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Найти день недели</string>
+    <string name="enter_day">Введите день</string>
+    <string name="enter_month">Введите месяц</string>
+    <string name="find_weekday">Найти день недели</string>
+    <string name="result">Результат: %s</string>
+    <string name="error_invalid_day">Неверный день (1-31)</string>
+    <string name="error_invalid_month">Неверный месяц (1-12)</string>
+    <string name="error_overflow">Переполнение при вычислении</string>
+    <string name="error_invalid_date">Неверная дата для этого месяца</string>
+    <string name="calculating">Вычисление...</string>
+
+    <!-- Days of week -->
+    <string name="monday">Понедельник</string>
+    <string name="tuesday">Вторник</string>
+    <string name="wednesday">Среда</string>
+    <string name="thursday">Четверг</string>
+    <string name="friday">Пятница</string>
+    <string name="saturday">Суббота</string>
+    <string name="sunday">Воскресенье</string>
+</resources>
