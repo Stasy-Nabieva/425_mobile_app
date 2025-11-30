@@ -69,7 +69,7 @@ object DateCalculator {
 
     private fun isValidDate(day: Int, month: Int): Boolean {
         val daysInMonth = when (month) {
-            2 -> 29
+            2 -> 28
             4, 6, 9, 11 -> 30
             else -> 31
         }
