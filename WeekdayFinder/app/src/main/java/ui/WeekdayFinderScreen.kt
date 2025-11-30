@@ -14,19 +14,23 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.weekdayfinder.R
 import com.example.weekdayfinder.utils.DateCalculator
+import androidx.compose.runtime.saveable.rememberSaveable
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WeekdayFinderScreen() {
-    var day by remember { mutableStateOf("") }
-    var month by remember { mutableStateOf("") }
-    var result by remember { mutableStateOf("") }
-    var error by remember { mutableStateOf("") }
+    // Используем rememberSaveable вместо remember для сохранения состояния
+    var day by rememberSaveable { mutableStateOf("") }
+    var month by rememberSaveable { mutableStateOf("") }
+    var result by rememberSaveable { mutableStateOf("") }
+    var error by rememberSaveable { mutableStateOf("") }
+    var isCalculating by rememberSaveable { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(24.dp), //отступ
+            .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -84,13 +88,20 @@ fun WeekdayFinderScreen() {
                     dayInt == null -> error = "INVALID_DAY"
                     monthInt == null -> error = "INVALID_MONTH"
                     else -> {
-                        val calculationResult = DateCalculator.calculateWeekday(dayInt, monthInt)
-                        if (calculationResult.isSuccess) {
-                            result = calculationResult.getOrNull() ?: ""
-                            error = ""
-                        } else {
-                            error = calculationResult.exceptionOrNull()?.message ?: "UNKNOWN_ERROR"
-                            result = ""
+                        isCalculating = true
+                        // Запускаем вычисление в фоновом потоке
+                        kotlinx.coroutines.GlobalScope.launch {
+                            val calculationResult = DateCalculator.calculateWeekday(dayInt, monthInt)
+                            kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.Main) {
+                                isCalculating = false
+                                if (calculationResult.isSuccess) {
+                                    result = calculationResult.getOrNull() ?: ""
+                                    error = ""
+                                } else {
+                                    error = calculationResult.exceptionOrNull()?.message ?: "UNKNOWN_ERROR"
+                                    result = ""
+                                }
+                            }
                         }
                     }
                 }
@@ -101,6 +112,12 @@ fun WeekdayFinderScreen() {
         }
 
         Spacer(modifier = Modifier.height(24.dp))
+
+        // Индикатор загрузки
+        if (isCalculating) {
+            CircularProgressIndicator(modifier = Modifier.size(36.dp))
+            Spacer(modifier = Modifier.height(24.dp))
+        }
 
         // Отображение результата или ошибки
         when {
