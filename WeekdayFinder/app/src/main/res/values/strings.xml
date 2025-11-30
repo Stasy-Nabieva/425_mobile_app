@@ -8,6 +8,7 @@
     <string name="error_invalid_month">Invalid month (1-12)</string>
     <string name="error_overflow">Calculation overflow</string>
     <string name="error_invalid_date">Invalid date for this month</string>
+    <string name="calculating">Calculating...</string>
 
     <!-- Days of week -->
     <string name="monday">Monday</string>
