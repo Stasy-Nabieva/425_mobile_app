@@ -9,6 +9,7 @@
     <string name="error_invalid_month">Неверный месяц (1-12)</string>
     <string name="error_overflow">Переполнение при вычислении</string>
     <string name="error_invalid_date">Неверная дата для этого месяца</string>
+    <string name="calculating">Вычисление...</string>
 
     <!-- Days of week -->
     <string name="monday">Понедельник</string>
